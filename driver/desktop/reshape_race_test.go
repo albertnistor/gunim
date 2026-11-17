@@ -26,7 +26,7 @@ func TestAWindowResizedWhileItDrawsKeepsDrawing(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer w.Close()
+	defer func() { _ = w.Close() }()
 	rs, ok := w.(driver.Reshaper)
 	if !ok {
 		t.Skip("the window does not reshape")
